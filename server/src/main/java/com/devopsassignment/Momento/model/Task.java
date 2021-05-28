@@ -28,4 +28,24 @@ public class Task {
                 ", \n description='" + description + '\'' +
                 '}';
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name2) {
+        this.name = name2;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description2) {
+        this.description = description2;
+    }
+
+    public void setId(Long id2) {
+        this.id = id2;
+    }
 }
