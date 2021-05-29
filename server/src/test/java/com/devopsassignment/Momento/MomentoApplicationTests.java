@@ -59,13 +59,13 @@ public class MomentoApplicationTests {
 	}
 
 	@Test
-	void getTaskTest() {
+	void getTaskTest() { 
 		long mockId = 123;
 		Task mockTask = new Task();
-		Optional<Task> mockT = Optional.of(mockTask);
+		//Optional<Task> mockT = Optional.of(mockTask);
 		Task mockTask1 = new Task();
 		TaskController spy = Mockito.spy(cut);
-		doReturn(mockT).when(mockTaskService)
+		doReturn(mockTask).when(mockTaskService)
           .findById(mockId);
 		mockTask1=spy.getTask(mockId);
 		verify(mockTaskService, times(1)).findById(mockId);
@@ -84,13 +84,13 @@ public class MomentoApplicationTests {
 	void updateTaskTest() {
 		long mockId = 123;
 		Task mockTask = new Task();
-		Optional<Task> mockT = Optional.of(mockTask);
+		//Optional<Task> mockT = Optional.of(mockTask);
 		Task mockTask1 = new Task();
 		TaskController spy = Mockito.spy(cut);
-		doReturn(mockT).when(mockTaskService)
-          .findById(mockId);
+		doReturn(mockTask).when(mockTaskService)
+          .saveTask(mockTask);
 		mockTask1=spy.updateTask(mockTask, mockId);
-		verify(mockTaskService, times(1)).findById(mockId);
+		verify(mockTaskService, times(1)).saveTask(mockTask);
 	}
 
 }
