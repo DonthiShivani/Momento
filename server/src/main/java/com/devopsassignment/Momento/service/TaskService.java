@@ -19,25 +19,25 @@ public class TaskService {
     TaskFileRepository taskFileRepository;
 
     public Task saveTask(Task newTask) {
-        Task taskAddedToFile = taskFileRepository.saveTask(newTask);
-        System.out.println(taskAddedToFile);
-        return taskRepository.save(newTask);
+//        System.out.println(taskFileRepository.saveTask(newTask));
+        return taskFileRepository.saveTask(newTask);
+//        return taskRepository.save(newTask);
     }
 
     public List<Task> getTasks() {
-        List<Task> allTasks = taskFileRepository.getTasks();
-        System.out.println(allTasks);
-        return taskRepository.findAll();
+        System.out.println(taskFileRepository.getTasks());
+        return taskFileRepository.getTasks();
+//        return taskRepository.findAll();
     }
 
-    public Optional<Task> findById(Long id) {
-        Task task = taskFileRepository.findById(id);
-        System.out.println(task);
-        return taskRepository.findById(id);
+    public Task findById(Long id) {
+        System.out.println(taskFileRepository.findById(id));
+        return taskFileRepository.findById(id);
+//        return taskRepository.findById(id);
     }
 
     public void deleteById(Long id) {
         taskFileRepository.deleteById(id);
-        taskRepository.deleteById(id);
+//        taskRepository.deleteById(id);
     }
 }

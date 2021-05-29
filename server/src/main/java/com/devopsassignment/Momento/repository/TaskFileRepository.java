@@ -72,20 +72,19 @@ public class TaskFileRepository {
     }
 
     public Task saveTask(Task newTask){
-
+        System.out.println("Saving Task to file");
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JSONParser jsonParser = new JSONParser();
-        ArrayList<Task> taskList = new ArrayList<>();
-
         try {
-            ArrayList<Task> uniqueTaskList = getTasks();
-
-            JSONObject newTaskjson = (JSONObject) jsonParser.parse(gson.toJson(newTask));
-            System.out.println(newTaskjson);
-            JSONArray taskJsonList = readFile();
-            taskJsonList.add(newTaskjson);
-            writeToFile(taskJsonList);
-
+            if(findById(newTask.getId())==null){
+                System.out.println("Task not already present in db");
+                ArrayList<Task> uniqueTaskList = getTasks();
+                JSONObject newTaskjson = (JSONObject) jsonParser.parse(gson.toJson(newTask));
+                System.out.println(newTaskjson);
+                JSONArray taskJsonList = readFile();
+                taskJsonList.add(newTaskjson);
+                writeToFile(taskJsonList);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -103,11 +102,14 @@ public class TaskFileRepository {
     }
 
     public void deleteById(Long id){
+        System.out.println("Deleting task from file");
         if(findById(id)!=null){
+            System.out.println("Found the task in the file");
             List<Task> allTasks = getTasks();
             for(Task task: allTasks){
                 if(task.getId()==id){
                     allTasks.remove(task);
+                    System.out.println(allTasks);
                     break;
                 }
             }
@@ -115,6 +117,7 @@ public class TaskFileRepository {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 JSONParser jsonParser = new JSONParser();
                 JSONArray modifiedTaskList = (JSONArray) jsonParser.parse(gson.toJson(allTasks));
+                writeToFile(modifiedTaskList);
             }catch (ParseException e){
                 e.printStackTrace();
             }

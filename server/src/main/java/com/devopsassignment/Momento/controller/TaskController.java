@@ -35,22 +35,27 @@ public class TaskController {
 
     @GetMapping("/tasks/{id}")
     public Task getTask(@PathVariable Long id) {
-        return taskService.findById(id)
-                .orElseThrow(() -> new TaskNotFoundExcptn(id));
+        return taskService.findById(id);
+//                .orElseThrow(() -> new TaskNotFoundExcptn(id));
     }
 
     @PutMapping("/tasks/{id}")
     public Task updateTask(@RequestBody Task newTask, @PathVariable Long id) {
-        return taskService.findById(id)
-                .map(task -> {
-                    task.setName(newTask.getName());
-                    task.setDescription(newTask.getDescription());
-                    return taskService.saveTask(task);
-                })
-                .orElseGet(() -> {
-                    newTask.setId(id);
-                    return taskService.saveTask(newTask);
-                });
+//        return taskService.findById(id);
+        if(taskService.findById(id)!=null){
+            taskService.deleteById(id);
+            return taskService.saveTask(newTask);
+        }
+        else{
+            return taskService.saveTask(newTask);
+        }
+//                .map(task -> {
+//                    return taskService.saveTask(task);
+//                })
+//                .orElseGet(() -> {
+//                    newTask.setId(id);
+//                    return taskService.saveTask(newTask);
+//                });
     }
 
     @DeleteMapping("/tasks/{id}")
