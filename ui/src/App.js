@@ -38,6 +38,7 @@ const App = () => {
   // Add Task
   const addTask = async (task) => {
     var task = {
+      id: Math.floor(Math.random()*90000) + 10000,
       name: task.text,
       description: task.day
     };

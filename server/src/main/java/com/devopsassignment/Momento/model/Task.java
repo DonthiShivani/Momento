@@ -48,4 +48,8 @@ public class Task {
     public void setId(Long id2) {
         this.id = id2;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
