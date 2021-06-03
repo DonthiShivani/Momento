@@ -11,8 +11,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class TaskController {
+    // @Autowired
+    // TaskService taskService;
+
+    public TaskService taskService;
+
     @Autowired
-    TaskService taskService;
+    public TaskController(TaskService taskService)
+    {
+        this.taskService = taskService;
+    }
 
     @GetMapping("/tasks")
     public List<Task> getTasks(){
@@ -51,7 +59,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/tasks/{id}")
-    void deleteTask(@PathVariable Long id) {
+    public void deleteTask(@PathVariable Long id) {
         taskService.deleteById(id);
     }
 }

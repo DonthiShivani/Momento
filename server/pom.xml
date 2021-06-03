@@ -10,11 +10,12 @@
 	</parent>
 	<groupId>com.devopsassignment</groupId>
 	<artifactId>Momento</artifactId>
+	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Momento</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
