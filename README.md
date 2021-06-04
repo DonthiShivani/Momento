@@ -23,5 +23,5 @@ npm run server
 ### To build for production
 
 ```
-npm run build  
+npm run build
 ```
